@@ -1,0 +1,5 @@
+n, m = map(int, input().split())
+li=[]
+for i in range(n):
+  li.append(min(list(map(int, input().split()))))
+print(max(li))
