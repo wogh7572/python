@@ -1,0 +1,15 @@
+n = int(input())
+li = list(map(str, input().split()))
+dic = dict()
+dic['L']= (0, -1)
+dic['R']= (0, 1)
+dic['U']= (-1, 0)
+dic['D']= (1, 0)
+x, y = 1, 1
+for i in li:
+  a, b = dic[i]
+  x, y = x+a, y+b
+  if x<=0 or x>=n or y<=0 or y>=n:
+    x, y = x-a, y-b
+    continue
+print(x, y)
