@@ -1,0 +1,18 @@
+def dfs(i, j, graph):
+    if i<0 or i>=n or j<0 or j>=m:
+        return 
+    graph[i][j]=0
+    dfs(i+1, j, graph)
+    dfs(i-1, j, graph)
+    dfs(i, j, graph)
+    dfs(i, j, graph)
+
+n, m = map(int, input().split())
+graph = list(input() for i in range(n)):
+cnt=0
+for i in range(n):
+    for j in range(m):
+        if li[i][j]=='1':
+            dfs(i, j, graph)
+            cnt+=1
+return cnt
