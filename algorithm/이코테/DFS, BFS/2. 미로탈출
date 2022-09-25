@@ -1,0 +1,21 @@
+from collections import deque
+def bfs(i, j, graph):
+  dx = [0, 0, 1, -1]
+	dy = [1, -1, 0, 0]
+	queue = deque([(i, j)])
+	while True:
+		x, y = queue.popleft()
+		for num in range(4):
+			nx = x+dx[num]
+			ny = y+dy[num]
+			if x<0 or x>=n or y<0 or y>=m:
+				continue
+			if graph[nx][ny]==1:
+				graph[nx][ny]=graph[x][y]+1
+				queue.append((nx, ny))
+n, m = map(int, input().split())
+graph=[]
+for i in range(n):
+	graph.append(list(map(int, input())))
+bfs(0, 0, graph)
+print(graph[n-1][m-1])
