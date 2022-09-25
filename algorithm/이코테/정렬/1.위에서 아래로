@@ -1,0 +1,15 @@
+sol1)
+li=[]
+for _ in range(int(input())):
+  li.append(int(input()))
+li.sort()
+for i in li[::-1]:
+  print(i, end=' ')
+  
+sol2)
+li=[]
+for _ in range(int(input())):
+  li.append(int(input()))
+li = sorted(li, reverse=True)
+for i in li:
+  print(i, end=' ')
