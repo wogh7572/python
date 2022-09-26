@@ -1,0 +1,53 @@
+sol1)
+n = int(input())
+array = set(map(int, input().split()))
+m = int(input())
+x = list(map(int, input().split()))
+for i in x:
+  if i in array:
+    print('yes')
+  else:
+    print('no')
+
+sol2)
+
+def binary_search(i):
+  start, end = 0, n-1
+  while start<=end:
+    mid = (start+end)//2
+    if array[mid]==i:
+      return True
+    elif array[mid]<i:
+      start = mid+1
+    else:
+      end = mid-1
+  return False
+
+n = int(input())
+array = list(map(int, input().split()))
+m = int(input())
+x = list(map(int, input().split()))
+array.sort()
+for i in x:
+  a=binary_search(i)
+  if a:
+    print('yes')
+  else:
+    print('no')
+
+
+
+sol3)
+
+n = int(input())
+array = [0]*1000001
+for i in input().split():
+  array[int(i)]=1
+m = int(input())
+x = list(map(int, input().split()))
+array.sort()
+for i in x:
+  if array[i]==1:
+    print('yes')
+  else:
+    print('no')
