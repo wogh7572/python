@@ -1,0 +1,18 @@
+n, m = map(int, input().split())
+array = list(map(int, input().split()))
+array.sort()
+start, end = 0, max(array)
+while start<=end:
+  mid = (start+end)//2
+  total=0
+  for i in array:
+    if i>mid:
+      total+=i-mid
+  #남은 떡이 m보다 작을때
+  if total<m:
+    end = mid-1
+  #남은떡이 m보다 클때
+  else:
+    result=mid
+    start = mid+1
+print(mid)
