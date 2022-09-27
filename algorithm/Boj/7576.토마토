@@ -1,0 +1,41 @@
+가로가 m, 세로가n인 토마토가 담긴 창고안에 익은 토마토가 담긴 상자는 1, 익지않은 토마토가 담긴 상자는 0, 빈 상자는 -1로 표시되어 있다.
+여기서 익은토마토와 인접한 익지않은 토마토는 다음날에 익는다고 하였을때, 창고내에 모든 토마토가 익는데 까지 걸리는 시간을 구하여라.
+
+1. 모든 토마토가 익을 수 없을 경우에 -1를 출력하라
+
+from collections import deque
+
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
+m, n = map(int, input().split())	#창고의 가로:m, 창고의 세로:n
+array = []	#창고를 2차원 배열로 나타냄
+for i in range(n):
+	array.append(list(map(int, input().split())))
+queue = deque()
+visited = [[0]*(m+1) for i in range(n+1)]
+
+#창고에 익은 토마토를 queue에 넣고, 하루가 지날때마다 해당 배열에 숫자를 1씩 증가시킨다.
+for i in range(n):
+	for j in range(m):
+		if array[i][j]==1:
+			queue.append((i, j))
+#익은토마토가 없는 특수케이스
+if not queue:
+	print(0)
+else:
+	while queue:
+		y, x = queue.popleft()		#관성적으로 x, y를 작성하는것이 아니라 li[n][m]을 (n, m)으로 입력받는것이므로 y, x로 입력을 받는다.
+		visited[y][x]=1
+		for i in range(4):
+			nx, ny = x+dx[i], y+dy[i]
+			if 0<=ny<n and 0<=nx<m and array[ny][nx]==0 and visited[ny][nx]==0:
+				queue.append((ny, nx))
+				array[ny][nx]=array[y][x]+1
+	result=0
+	for i in array:
+		if 0 in i: #bfs작업이 끝나고 array그래프에 0이 남아있으면 -1를 출력한다.
+			result = 0
+			break
+		result = max(max(i), result)
+	print(result-1)	#첫날에 1로 시작했으므로 마지막날에서 숫자 1을 뺀다.
