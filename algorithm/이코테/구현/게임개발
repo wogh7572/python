@@ -1,0 +1,45 @@
+def turn_left():
+    global left_cnt
+    global d
+    left_cnt+=1
+    if d>0:
+        d-=1
+    else:
+        d+=3
+         
+            
+
+n, m = map(int, input().split())
+x, y, d = map(int, input().split())
+graph = []
+visited = [[0]*m for i in range(n)]
+for i in range(n):
+    graph.append(list(map(int, input().split())))
+dy = [0, 1, 0, -1]    #북동남서
+dx = [-1, 0, 1, 0]
+cnt=0
+left_cnt=0
+
+while True:
+    turn_left()
+    if left_cnt==4:
+        nx = x - dx[d]
+        ny = y - dy[d]
+        if 0<=nx<m and 0<=ny<n:
+            if graph[ny][nx]==0:
+                visited[
+                graph[ny][nx]=1
+                x, y = nx, ny
+            else:
+                break
+    nx = x + dx[d]
+    ny = y + dy[d]
+    if 0<=nx<m and 0<=ny<n:
+          if graph[ny][nx]==0 and visited[ny][nx]==0:
+              visited[ny][nx]=1
+              graph[ny][nx]=1
+              x, y = nx, ny
+              cnt+=1
+              left_cnt=0
+               
+print(cnt)
